@@ -1,15 +1,30 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+import java.util.Scanner;
+public class ShipCostCalculator {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner in = new Scanner(System.in);
+        double itemPrice = 0;
+        double shipCost = 0;
+        double totalCost = 0;
+        final double SHIP_RATE = .02;
+        String trash = "";
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.print("Please input your item price in USD: ");
+        if (in.hasNextDouble()) {
+            itemPrice = in.nextDouble();
+            in.nextLine();
+            if (itemPrice < 100)
+            {
+                shipCost = itemPrice * SHIP_RATE;
+            }
+            totalCost = itemPrice + shipCost;
+            System.out.println("your shipping cost is $" + shipCost);
+            System.out.println("your total cost is $" + totalCost);
+        }
+        else
+        {
+            trash = in.nextLine();
+            System.out.println("invalid Item Price " + trash);
+            System.exit(0);
         }
     }
 }
